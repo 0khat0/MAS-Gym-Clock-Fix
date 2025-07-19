@@ -4,9 +4,7 @@
 
 // Segment patterns for 7-segment display (common cathode)
 // Format: DP-G-F-E-D-C-B-A (MSB to LSB)
-// You may need to flip these with LSBFIRST later if segments are miswired
 
-// Standard 7-segment binary font
 byte digitSegments[10] = {
   B01110111, // 0
   B00001010, // 1
@@ -35,7 +33,7 @@ void loop() {
 }
 
 void displayTestDigits() {
-  // Digits: [1][2][5][8]
+  
   byte digits[4] = {
     digitSegments[5],
     digitSegments[6],
@@ -48,7 +46,7 @@ void displayTestDigits() {
   // Shift out rightmost first → leftmost last
   for (int i = 3; i >= 0; i--) {
     shiftOut(SER_PIN, CLK_PIN, MSBFIRST, digits[i]);
-    // ↳ Try LSBFIRST if segments look wrong or scrambled
+ 
   }
 
   digitalWrite(LAT_PIN, HIGH);
